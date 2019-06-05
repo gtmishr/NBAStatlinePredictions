@@ -11,5 +11,7 @@ The more advanced statistics can be found with:
 seasonStatsPredictor.py
 ```
 
+A todo list can be found in the projects directory above. The current aim is to insert a series of statistics, and recieve back who would be most likely to perform those stats in a season over the past 69 years.
+
 ## Sources
 NBA average statlines from 1950 - 2017 (Season_Stats.csv) - https://www.kaggle.com/drgilermo/nba-players-stats#Seasons_Stats.csv
