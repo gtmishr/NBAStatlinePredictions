@@ -1,37 +1,46 @@
 import csv
+from sklearn import tree
 
 class Player() :
-    def __init__(self, name, age, year, team, points, rebounds, assists):
+    def __init__(self, name, age, year, team, gamesPlayed, points, assists):
         self.name = name
         self.age = age
         self.year = year
         self.team = team
+        self.gamesPlayed = gamesPlayed
         self.points = points
-        self.rebonds = rebounds
         self.assists = assists
 
     def listStats(self):
-        print(self.name + " is " + self.age + " years old, and averaged " + self.points + " points per game, " + self.rebounds + " rebounds per game and " + self.assists + " assists per game this season for the " + self.team + ".")
 
-with open('Seasons_Stats.csv') as csvFile:
-    csvReader = csv.reader(csvFile, delimiter = ',')
-    lineCount = 0
-    playersArray = []
-    parsedRebounds = 0
+        print(self.name + " is " + self.age + " years old, played " + self.gamesPlayed + " games, and scored " + self.points + " points, and " + self.assists + " assists this season for the " + self.team + ".")
 
-    for row in csvReader:
-        print(f'\t{row[2]} played in {row[1]} for the {row[parsedRebounds]}')
+def createPlayerObject(firstUserNameSearch, secondUserNameSearch):
 
-        if {row[47]} != int:
-            parsedRebounds = 0
-        else:
-            parsedRebounds = {row[47]}
+    with open('Seasons_Stats.csv') as csvFile:
 
-        playersArray.append(Player(f'{row[2]}', f'{row[4]}', f'{row[1]}', f'{row[5]}', f'{row[52]}', f'{row[48]}', parsedRebounds))
+        csvReader = csv.reader(csvFile, delimiter = ',')
+        lineCount = 0
+        parsedRebounds = 0
 
-        lineCount += 1
+        for row in csvReader:
 
-for i in len(playersArray):
-    playersArray[i].listStats()
+            if (firstUserNameSearch.lower() == f'{row[2]}'.lower()) or (secondUserNameSearch.lower() == f'{row[2]}'.lower()):
 
-playersArray.append(Player("Lebron James", "34", "2019", "LAL", "27.4", "8.5", "8.3"))
+                statsArray.append([(float(f'{row[52]}')/float(f'{row[6]}')), (float(f'{row[47]}')/float(f'{row[6]}')), (float(f'{row[46]}')/float(f'{row[6]}')), float(f'{row[36]}'), float(f'{row[39]}')])
+                playersNamesArray.append(f'{row[2]}')
+
+                lineCount += 1
+
+statsArray = []
+playersNamesArray = []
+
+firstUserNameSearch = input("Enter a player's name: ")
+secondUserNameSearch = input("Now enter another player's name: ")
+createPlayerObject(firstUserNameSearch, secondUserNameSearch)
+
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(statsArray, playersNamesArray)
+
+print(clf.predict([[28, 10, 10, 0.4, 0.3]]))
+print(clf.predict([[4, 0, 6, 0.2, 0.5]]))
