@@ -4,8 +4,8 @@ from sklearn.tree.export import export_text
 
 def opening():
 
-    statsArray = []
-    playersNamesArray = []
+    statsArray.clear()
+    playersNamesArray.clear()
 
     initialInput = input("Welcome! What would you like to do? ")
 
