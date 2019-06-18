@@ -1,5 +1,6 @@
 import csv
 from sklearn import tree
+from sklearn.tree.export import export_text
 
 def opening():
 
@@ -59,7 +60,10 @@ def twoPlayerPrediction():
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(statsArray, playersNamesArray)
 
-    print(clf.predict([[28, 10, 10, 0.4, 0.3]]))
+    r = export_text(clf, ["ppg", "apg", "rpg", "3p%", "2p%"])
+    print(r)
+
+    print(clf.predict([[30, 6, 9, 0.4, 0.3]]))
     print(clf.predict([[4, 0, 6, 0.2, 0.2]]))
 
     opening()
