@@ -16,27 +16,28 @@ def opening():
         print("Thanks for checking me out!")
         quit()
 
+# Points scored / games, assists / games, rebounds / games, three point percentage, two point percentage
 def createPlayerObjects(row):
     statsArray.append([(float(f'{row[52]}')/float(f'{row[6]}')), (float(f'{row[47]}')/float(f'{row[6]}')), (float(f'{row[46]}')/float(f'{row[6]}')), float(f'{row[36]}'), float(f'{row[39]}')])
     playersNamesArray.append(f'{row[2]}')
 
-def listPlayerStats(): # This currently doesn't work, but we'll get to it. I have to do actual homework now anyways.
+def listPlayerStats():
 
-        with open('Seasons_Stats.csv') as csvFile:
+    with open('Seasons_Stats.csv') as csvFile:
 
-            csvReader = csv.reader(csvFile, delimiter = ',')
-            lineCount = 0
-            parsedRebounds = 0
+        csvReader = csv.reader(csvFile, delimiter = ',')
+        listLineCount = 0
 
-            for row in csvReader:
+        for row in csvReader:
 
-                createPlayerObjects(lineCount)
-                lineCount += 1
+            if (row[0] != "") and (f'{row[46]}' != ""):
 
-                print(statsArray[row])
-                print(playersNamesArray[row])
+                createPlayerObjects(row)
 
-            opening()
+    print(statsArray)
+    print(playersNamesArray)
+
+    opening()
 
 def twoPlayerPrediction():
 
@@ -46,21 +47,20 @@ def twoPlayerPrediction():
     with open('Seasons_Stats.csv') as csvFile:
 
         csvReader = csv.reader(csvFile, delimiter = ',')
-        lineCount = 0
-        parsedRebounds = 0
+        aLineCount = 0
 
         for row in csvReader:
 
             if (firstUserNameSearch.lower() == f'{row[2]}'.lower()) or (secondUserNameSearch.lower() == f'{row[2]}'.lower()):
 
                 createPlayerObjects(row)
-                lineCount += 1
+                aLineCount += 1
 
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(statsArray, playersNamesArray)
 
     print(clf.predict([[28, 10, 10, 0.4, 0.3]]))
-    print(clf.predict([[4, 0, 6, 0.2, 0.5]]))
+    print(clf.predict([[4, 0, 6, 0.2, 0.2]]))
 
     opening()
 
