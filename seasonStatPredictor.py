@@ -37,9 +37,9 @@ def createPlayerObjectsAllStats(row):
     x = 0
 
     while x < 43:
-        if f'{row[0]}' != '' and f'{row[x]}' != '' and (x != 0) and (x != 2) and (x != 3) and (x != 5) and (x != 7) and (x != 21) and (x != 26) and  (int(f'{row[x]}') >= 1980):
-            tempArray.append(f'{row[x]}')
-        playersNamesArray.append(f'{row[3]}')
+        if f'{row[0]}' != '' and f'{row[x]}' != '' and (x != 0) and (x != 2) and (x != 3) and (x != 5) and (x != 7) and (x != 21) and (x != 26) and (float(f'{row[x]}') >= 1980):
+            tempArray.append(float(f'{row[x]}'))
+        positionArray.append(f'{row[4]}')
         statsArray.append(tempArray)
         x += 1
 
