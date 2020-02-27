@@ -1,6 +1,5 @@
 import csv
 from sklearn import tree
-from sklearn.tree.export import export_text
 
 def opening():
 # Function ran upon initial running of the program, and after each program is fully executed.
@@ -13,11 +12,11 @@ def opening():
 
     initialInput = input("Welcome! What would you like to do? ")
 
-    if (initialInput.lower() == "List Stats".lower()) or (initialInput.lower() == "L".lower()) or (initialInput.lower() == "List".lower()):
+    if (initialInput.lower() == "LS".lower()) or (initialInput.lower() == "L".lower()) or (initialInput.lower() == "List".lower()):
         listPlayerStats()
-    elif (initialInput.lower() == "2 Player Analysis".lower()) or (initialInput.lower() == "2P".lower()):
+    elif (initialInput.lower() == "2PA".lower()) or (initialInput.lower() == "2P".lower()):
         twoPlayerPrediction()
-    elif (initialInput.lower() == "Position Analysis".lower()) or (initialInput.lower() == "PA".lower()):
+    elif (initialInput.lower() == "PS".lower()) or (initialInput.lower() == "PA".lower()):
         positionAnalysis()
     elif (initialInput.lower() == "Exit".lower()) or (initialInput.lower() == "E".lower()):
         print("Thanks for checking me out!")
@@ -81,11 +80,11 @@ def twoPlayerPrediction():
     clf = tree.DecisionTreeClassifier()
     clf = clf.fit(statsArray, playersNamesArray)
 
-    r = export_text(clf, ["ppg", "apg", "rpg", "3p%", "2p%"])
-    print(r)
+#    r = export_text(clf, ["ppg", "apg", "rpg", "3p%", "2p%"])
+#    print(r)
 
-    print(clf.predict([[30, 6, 9, 0.4, 0.3]]))
-    print(clf.predict([[0, 0, 0, 0, 0]]))
+    print(clf.predict([[27.1, 7.4, 7.4, 1.6, 0.8]]))
+    print(clf.predict([[100, 100, 100, 100, 100]]))
 
     opening()
 
