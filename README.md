@@ -15,3 +15,5 @@ A todo list can be found in the projects directory above. The current aim is to 
 
 ## Sources
 NBA average statlines from 1950 - 2017 (Season_Stats.csv) - https://www.kaggle.com/drgilermo/nba-players-stats#Seasons_Stats.csv
+
+This project is now on the Github Arctic Vault Programme!
